@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import { paymentScheduleAPI } from "./payment-schedule-api";
 import CONFIG from "./config";
 
 const CalculatorInput = ({ calculate }) => {
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [productError, setProductError] = useState(null);
   const [activeProductID, setActiveProductID] = useState("");
@@ -58,7 +60,8 @@ const CalculatorInput = ({ calculate }) => {
           setAmount(Math.round(products[0].maxAmount / 2));
         }
       })
-      .catch(reason => setProductError(reason));
+      .catch(reason => setProductError(reason))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -70,7 +73,9 @@ const CalculatorInput = ({ calculate }) => {
       ) : null}
 
       <Form.Group>
-        <Form.Label htmlFor="product">Product</Form.Label>
+        <Form.Label htmlFor="product">
+          Product {loading ? <Spinner animation="border" size="sm" /> : null}
+        </Form.Label>
         <Form.Control
           as="select"
           name="product"

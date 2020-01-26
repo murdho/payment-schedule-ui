@@ -1,8 +1,8 @@
 import { doTimes } from "../functions";
 import CONFIG from "../config";
 
-// const ARTIFICIAL_DELAY = 1000;
-const ARTIFICIAL_DELAY = 0;
+const ARTIFICIAL_DELAY = 500;
+// const ARTIFICIAL_DELAY = 0;
 
 const fakeAPI = {
   calculate: ({ productID, amount, period, paymentDay }) => {
@@ -95,13 +95,13 @@ const productByID = productID => {
 
 const delayResolve = value => {
   return new Promise(resolve => {
-    setTimeout(resolve(value), ARTIFICIAL_DELAY);
+    setTimeout(() => resolve(value), ARTIFICIAL_DELAY);
   });
 };
 
 const delayReject = reason => {
   return new Promise((_, reject) => {
-    setTimeout(reject(reason), ARTIFICIAL_DELAY);
+    setTimeout(() => reject(reason), ARTIFICIAL_DELAY);
   });
 };
 

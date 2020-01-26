@@ -1,8 +1,11 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import { formatDecimal } from "./functions";
+import Spinner from "react-bootstrap/Spinner";
 
-const PaymentSchedule = ({ rows }) => {
+const PaymentSchedule = ({ rows, loading }) => {
+  const hideRows = !rows.length || loading;
+
   return (
     <Table striped bordered hover style={tableStyle}>
       <thead>
@@ -17,12 +20,14 @@ const PaymentSchedule = ({ rows }) => {
         </tr>
       </thead>
       <tbody>
-        {rows.length ? (
-          renderRows(rows)
-        ) : (
+        {hideRows ? (
           <tr>
-            <td colSpan="7">No results</td>
+            <td colSpan="7">
+              {loading ? <Spinner animation="border" /> : "No results"}
+            </td>
           </tr>
+        ) : (
+          renderRows(rows)
         )}
       </tbody>
     </Table>
