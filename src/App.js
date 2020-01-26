@@ -1,10 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import Container from "react-bootstrap/Container";
+import Calculator from "./Calculator";
+import Header from "./Header";
 
 const App = () => {
   return (
-    <h1>Hello!</h1>
-  )
-}
+    <Container fluid>
+      <Header />
+      <Calculator />
+    </Container>
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById("root"))
+export default App;
