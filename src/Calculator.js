@@ -9,14 +9,18 @@ import Alert from "react-bootstrap/Alert";
 const Calculator = () => {
   const [rows, setRows] = useState([]);
   const [calculationError, setCalculationError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const calculate = ({ productID, amount, period, paymentDay }) => {
+    setLoading(true);
     paymentScheduleAPI
       .calculate({ productID, amount, period, paymentDay })
       .then(({ rows }) => {
+        setLoading(false);
         setRows(rows);
       })
       .catch(reason => {
+        setLoading(false);
         setCalculationError(reason);
       });
   };
@@ -35,7 +39,7 @@ const Calculator = () => {
 
       <Col xs="9">
         {calculationError ? renderErrorAlert() : null}
-        <PaymentSchedule rows={rows} />
+        <PaymentSchedule rows={rows} loading={loading} />
       </Col>
     </Row>
   );
