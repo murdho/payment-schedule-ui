@@ -52,7 +52,6 @@ const CalculatorInput = ({ calculate }) => {
     paymentScheduleAPI
       .products()
       .then(({ products }) => {
-        setLoading(false);
         setProducts(products);
 
         if (products.length) {
@@ -61,10 +60,8 @@ const CalculatorInput = ({ calculate }) => {
           setAmount(Math.round(products[0].maxAmount / 2));
         }
       })
-      .catch(reason => {
-        setLoading(false);
-        setProductError(reason);
-      });
+      .catch(reason => setProductError(reason))
+      .finally(() => setLoading(false));
   }, []);
 
   return (

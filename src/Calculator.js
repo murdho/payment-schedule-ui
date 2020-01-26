@@ -13,16 +13,14 @@ const Calculator = () => {
 
   const calculate = ({ productID, amount, period, paymentDay }) => {
     setLoading(true);
+
     paymentScheduleAPI
       .calculate({ productID, amount, period, paymentDay })
       .then(({ rows }) => {
-        setLoading(false);
         setRows(rows);
       })
-      .catch(reason => {
-        setLoading(false);
-        setCalculationError(reason);
-      });
+      .catch(reason => setCalculationError(reason))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
