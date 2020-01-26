@@ -45,7 +45,7 @@ const renderErrorAlert = () => {
   return (
     <Alert variant="danger">
       <Alert.Heading>
-        Sorry, something went wrong with the calculation.{" "}
+        Sorry, something went wrong with the calculation.
       </Alert.Heading>
       <p>Please try again with different input.</p>
     </Alert>
