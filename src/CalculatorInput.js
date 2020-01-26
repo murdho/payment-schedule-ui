@@ -20,6 +20,12 @@ const CalculatorInput = ({ calculate }) => {
   const [paymentDay, setPaymentDay] = useState(0);
 
   useEffect(() => {
+    // TODO: report the error to tracker.
+    // eslint-disable-next-line no-console
+    if (productError) console.error(productError);
+  }, [productError]);
+
+  useEffect(() => {
     for (let product of products) {
       if (product.id === activeProductID) {
         setActiveProduct(product);

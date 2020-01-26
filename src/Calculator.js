@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import CalculatorInput from "./CalculatorInput";
@@ -8,7 +8,7 @@ import Alert from "react-bootstrap/Alert";
 
 const Calculator = () => {
   const [rows, setRows] = useState([]);
-  const [apiError, setAPIError] = useState(null);
+  const [calculationError, setCalculationError] = useState(null);
 
   const calculate = ({ productID, amount, period, paymentDay }) => {
     paymentScheduleAPI
@@ -17,9 +17,15 @@ const Calculator = () => {
         setRows(rows);
       })
       .catch(reason => {
-        setAPIError(reason);
+        setCalculationError(reason);
       });
   };
+
+  useEffect(() => {
+    // TODO: report the error to tracker.
+    // eslint-disable-next-line no-console
+    if (calculationError) console.error(calculationError);
+  }, [calculationError]);
 
   return (
     <Row>
@@ -28,7 +34,7 @@ const Calculator = () => {
       </Col>
 
       <Col xs="9">
-        {apiError ? renderErrorAlert() : null}
+        {calculationError ? renderErrorAlert() : null}
         <PaymentSchedule rows={rows} />
       </Col>
     </Row>
