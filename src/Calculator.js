@@ -5,6 +5,8 @@ import Alert from "react-bootstrap/Alert";
 import CalculatorInput from "./CalculatorInput";
 import PaymentSchedule from "./PaymentSchedule";
 import { paymentScheduleAPI } from "./payment-schedule-api";
+import Header from "./Header";
+import ErrorBoundary from "./ErrorBoundary";
 
 const Calculator = () => {
   const [rows, setRows] = useState([]);
