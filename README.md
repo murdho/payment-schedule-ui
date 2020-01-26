@@ -19,7 +19,8 @@ Please **do not use the schedules** for real-life financial situations.
 - [x] MVP - schedule calculator, fake API usage
 - [x] Deployment to GitHub Pages
 - [x] Add error boundary and better error handling
-- [ ] Add config, refactor locale string usages to use config
-- [ ] Add tests
+- [x] Add config, refactor locale string usages to use config
+- [x] Add snapshot tests
+- [ ] Add better tests
 - [ ] Add a separate products page
 - [ ] Build and deploy using GitHub Actions
