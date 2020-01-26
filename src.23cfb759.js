@@ -94,4 +94,4 @@ var r,e;module.exports=require("./factoryWithThrowingShims")();
 },{}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),t=u(require("react-dom")),r=u(require("./App"));function u(e){return e&&e.__esModule?e:{default:e}}require("bootstrap/dist/css/bootstrap.min.css"),t.default.render(e.default.createElement(r.default,null),document.getElementById("root"));
 },{"react":"n8MK","react-dom":"NKHc","./App":"lY9v","bootstrap/dist/css/bootstrap.min.css":"y3A0"}]},{},["Focm"], null)
-//# sourceMappingURL=/src.23cfb759.js.map
+//# sourceMappingURL=src.23cfb759.js.map
