@@ -58,7 +58,8 @@ const tableStyle = {
   textAlign: "center",
   cursor: "pointer",
   tableLayout: "fixed",
-  wordWrap: "break-word"
+  wordWrap: "break-word",
+  backgroundColor: "white"
 };
 
 export default PaymentSchedule;
