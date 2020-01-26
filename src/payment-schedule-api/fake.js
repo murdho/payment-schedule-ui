@@ -6,6 +6,10 @@ const ARTIFICIAL_DELAY = 0;
 const fakeAPI = {
   calculate: ({ productID, amount, period, paymentDay }) => {
     const product = productByID(productID);
+    if (!product) {
+      return delayReject(`Product with ID ${productID} not found`);
+    }
+
     const interestRatePrc = product.interestRate / 100;
     const balanceWithInterest = amount * (1 + interestRatePrc);
     const balanceSubtrahend = balanceWithInterest / period;
@@ -20,37 +24,39 @@ const fakeAPI = {
       paymentDay
     );
 
-    return delay({
-      rows: doTimes(period + 1, n => {
-        let date;
-        if (n === 0) {
-          date = today;
-        } else {
-          date = new Date(firstPaymentDate.getTime());
-          date.setMonth(firstPaymentDate.getMonth() + n - 1);
-        }
+    const calculateRow = n => {
+      let date;
+      if (n === 0) {
+        date = today;
+      } else {
+        date = new Date(firstPaymentDate.getTime());
+        date.setMonth(firstPaymentDate.getMonth() + n - 1);
+      }
 
-        const balance = balanceWithInterest - balanceSubtrahend * n;
-        const principal = Math.random() * 100;
-        const interest = Math.random() * 10;
-        const additionalFees = Math.random();
-        const monthlyPayment = principal + interest + additionalFees;
+      const balance = balanceWithInterest - balanceSubtrahend * n;
+      const principal = Math.random() * 100;
+      const interest = Math.random() * 10;
+      const additionalFees = Math.random();
+      const monthlyPayment = principal + interest + additionalFees;
 
-        return {
-          n: n,
-          date: date.toLocaleDateString("fi-FI"),
-          balance: balance,
-          principal: principal,
-          interest: interest,
-          additionalFees: additionalFees,
-          monthlyPayment: monthlyPayment
-        };
-      })
+      return {
+        n: n,
+        date: date.toLocaleDateString("fi-FI"),
+        balance: balance,
+        principal: principal,
+        interest: interest,
+        additionalFees: additionalFees,
+        monthlyPayment: monthlyPayment
+      };
+    };
+
+    return delayResolve({
+      rows: doTimes(period + 1, calculateRow)
     });
   },
 
   products: () => {
-    return delay(products);
+    return delayResolve(products);
   }
 };
 
@@ -86,10 +92,16 @@ const productByID = productID => {
   }
 };
 
-const delay = result => {
-  return new Promise(resolve =>
-    setTimeout(() => resolve(result), ARTIFICIAL_DELAY)
-  );
+const delayResolve = value => {
+  return new Promise(resolve => {
+    setTimeout(resolve(value), ARTIFICIAL_DELAY);
+  });
+};
+
+const delayReject = reason => {
+  return new Promise((_, reject) => {
+    setTimeout(reject(reason), ARTIFICIAL_DELAY);
+  });
 };
 
 export default fakeAPI;
