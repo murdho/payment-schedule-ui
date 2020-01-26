@@ -8,8 +8,8 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.html --public-url='./'",
     "clean": "rm -rf .cache dist",
+    "build": "npm run clean && parcel build src/index.html --public-url='./'",
     "deploy": "gh-pages -d dist"
   },
   "author": "Murdho",
