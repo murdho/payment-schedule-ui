@@ -6,12 +6,9 @@ const ARTIFICIAL_DELAY = 0;
 const fakeAPI = {
   calculate: ({ productID, amount, period, paymentDay }) => {
     const product = productByID(productID);
-
-    // TODO: make the promise fail
-    if (!product) {
-      console.log("product not found: ", productID);
-      return delay({ rows: [] });
-    }
+    const interestRatePrc = product.interestRate / 100;
+    const balanceWithInterest = amount * (1 + interestRatePrc);
+    const balanceSubtrahend = balanceWithInterest / period;
 
     const today = new Date();
     const firstPaymentMonth =
@@ -23,8 +20,6 @@ const fakeAPI = {
       paymentDay
     );
 
-    const balanceSubtrahend = amount / period;
-
     return delay({
       rows: doTimes(period + 1, n => {
         let date;
@@ -35,7 +30,7 @@ const fakeAPI = {
           date.setMonth(firstPaymentDate.getMonth() + n - 1);
         }
 
-        const balance = amount - balanceSubtrahend * n;
+        const balance = balanceWithInterest - balanceSubtrahend * n;
         const principal = Math.random() * 100;
         const interest = Math.random() * 10;
         const additionalFees = Math.random();
