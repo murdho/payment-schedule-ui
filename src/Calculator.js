@@ -11,6 +11,7 @@ const Calculator = () => {
   const [calculationError, setCalculationError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Payment schedule calculation function to call external API.
   const calculate = ({ productID, amount, period, paymentDay }) => {
     setLoading(true);
 
@@ -23,6 +24,7 @@ const Calculator = () => {
       .finally(() => setLoading(false));
   };
 
+  // Handle calculation API error.
   useEffect(() => {
     // TODO: report the error to tracker.
     // eslint-disable-next-line no-console
