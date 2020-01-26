@@ -1,3 +1,5 @@
-import fakeAPI from "./payment-schedule-api/fake";
+import fakeAPI from "./payment-schedule-api/fake-api";
 
-export default fakeAPI;
+const paymentScheduleAPI = fakeAPI;
+
+export { paymentScheduleAPI };

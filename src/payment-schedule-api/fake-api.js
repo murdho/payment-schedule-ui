@@ -1,4 +1,5 @@
-import doTimes from "../function/do-times";
+import { doTimes } from "../functions";
+import CONFIG from "../config";
 
 // const ARTIFICIAL_DELAY = 1000;
 const ARTIFICIAL_DELAY = 0;
@@ -41,7 +42,7 @@ const fakeAPI = {
 
       return {
         n: n,
-        date: date.toLocaleDateString("fi-FI"),
+        date: date.toLocaleDateString(CONFIG.locale),
         balance: balance,
         principal: principal,
         interest: interest,
