@@ -22,12 +22,14 @@ const CalculatorInput = ({ calculate }) => {
   const [period, setPeriod] = useState(0);
   const [paymentDay, setPaymentDay] = useState(0);
 
+  // Handle product loading error.
   useEffect(() => {
     // TODO: report the error to tracker.
     // eslint-disable-next-line no-console
     if (productError) console.error(productError);
   }, [productError]);
 
+  // Update active product if activeProductID is updated.
   useEffect(() => {
     for (let product of products) {
       if (product.id === activeProductID) {
@@ -37,17 +39,27 @@ const CalculatorInput = ({ calculate }) => {
     }
   }, [activeProductID]);
 
+  // Update predefined options if the active product is updated.
   useEffect(() => {
     setPeriod(activeProduct.periods[0]);
     setPaymentDay(activeProduct.paymentDays[0]);
   }, [activeProduct]);
 
+  // Trigger schedule calculation if any field is updated and all fields
+  // have necessary values.
   useEffect(() => {
+    // Amount has to be in allowed range.
+    // Signaling user of the problem is the responsibility of the field.
+    if (amount < activeProduct.minAmount || amount > activeProduct.maxAmount) {
+      return;
+    }
+
     if (activeProductID && amount && period && paymentDay) {
       calculate({ productID: activeProductID, amount, period, paymentDay });
     }
   }, [activeProductID, amount, period, paymentDay]);
 
+  // Load products from external API on component render.
   useEffect(() => {
     paymentScheduleAPI
       .products()
