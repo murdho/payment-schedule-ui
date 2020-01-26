@@ -9,7 +9,7 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test:cov": "jest --coverage && open coverage/lcov-report/index.html",
     "clean": "rm -rf .cache dist",
     "build": "npm run clean && parcel build src/index.html --public-url='./'",
     "deploy": "gh-pages -d dist"
