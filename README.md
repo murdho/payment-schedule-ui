@@ -6,8 +6,8 @@
 
 ---
 
-# Payment Schedules UI
+# Payment Schedule UI
 
-Simple React.js frontend for calculating payment schedules.
+Simple React.js frontend for calculating and displaying payment schedules.
 
 
