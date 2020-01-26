@@ -11,7 +11,6 @@ test("ErrorBoundary - without error", () => {
     </ErrorBoundary>
   );
 
-
   expect(container.firstChild).toMatchInlineSnapshot(`
     <h1>
       hello

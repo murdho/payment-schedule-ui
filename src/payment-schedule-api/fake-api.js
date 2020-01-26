@@ -58,7 +58,7 @@ const fakeAPI = {
 
   products: () => {
     return delayResolve(products);
-  },
+  }
 };
 
 const products = {
