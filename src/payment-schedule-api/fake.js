@@ -64,7 +64,7 @@ const products = {
   products: [
     {
       id: "ae592251-eaaa-404c-b13a-f20f82f5ac68",
-      name: "Small loan",
+      name: "Smaller loan",
       periods: [3, 6, 9, 12, 18, 24, 36, 48, 60],
       paymentDays: [5, 10, 15, 20],
       minAmount: 250,
@@ -74,10 +74,10 @@ const products = {
 
     {
       id: "604e9aef-84a2-4909-a98e-53c747842e8e",
-      name: "Car loan",
-      periods: [6, 12, 24, 36, 48, 60],
+      name: "Bigger loan",
+      periods: [6, 12, 24, 36, 48, 60, 72],
       paymentDays: [1, 5, 15],
-      minAmount: 1000,
+      minAmount: 5000,
       maxAmount: 25000,
       interestRate: 10
     }

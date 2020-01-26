@@ -8,7 +8,7 @@ const PaymentSchedule = ({ rows }) => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Date</th>
+          <th>Payment Date</th>
           <th>Balance</th>
           <th>Principal</th>
           <th>Interest</th>
@@ -16,27 +16,29 @@ const PaymentSchedule = ({ rows }) => {
           <th>Monthly Payment</th>
         </tr>
       </thead>
-      <tbody>
-        {rows.map(row => {
-          return (
-            <tr key={row.n}>
-              <td>
-                <b>{row.n}</b>
-              </td>
-              <td>{row.date}</td>
-              <td>{formatDecimal(row.balance)}</td>
-              <td>{formatDecimal(row.principal)}</td>
-              <td>{formatDecimal(row.interest)}</td>
-              <td>{formatDecimal(row.additionalFees)}</td>
-              <td>
-                <b>{formatDecimal(row.monthlyPayment)}</b>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
+      <tbody>{rows.length ? renderRows(rows) : <tr><td colSpan="7">No results</td></tr>}</tbody>
     </Table>
   );
+};
+
+const renderRows = rows => {
+  return rows.map(row => {
+    return (
+      <tr key={row.n}>
+        <td>
+          <b>{row.n}</b>
+        </td>
+        <td>{row.date}</td>
+        <td>{formatDecimal(row.balance)}</td>
+        <td>{formatDecimal(row.principal)}</td>
+        <td>{formatDecimal(row.interest)}</td>
+        <td>{formatDecimal(row.additionalFees)}</td>
+        <td>
+          <b>{formatDecimal(row.monthlyPayment)}</b>
+        </td>
+      </tr>
+    );
+  });
 };
 
 const tableStyle = {
