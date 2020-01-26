@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,KACE,mBACF,CAEA,KACE,0DACF","file":"style.53b1a659.css","sourceRoot":"../src","sourcesContent":["#app {\n  padding: 2rem 2rem 0 2rem;\n}\n\nbody {\n  background-image: url(\"../img/leaves.png\");\n}\n"]}
