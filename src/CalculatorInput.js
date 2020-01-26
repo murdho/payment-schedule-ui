@@ -84,13 +84,13 @@ const CalculatorInput = ({ calculate }) => {
           ) : (
             products.map(product => (
               <option key={product.id} value={product.id}>
-                {product.name} (interest rate: {product.interestRate}%)
+                {product.name} with interest rate {product.interestRate}%
               </option>
             ))
           )}
         </Form.Control>
         <Form.Text className="text-muted">
-          Choose a financing product that you fancy.
+          Choose a financing product you fancy.
         </Form.Text>
       </Form.Group>
 
