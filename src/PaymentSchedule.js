@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import formatDecimal from "./function/format-decimal";
+import { formatDecimal } from "./functions";
 
 const PaymentSchedule = ({ rows }) => {
   return (

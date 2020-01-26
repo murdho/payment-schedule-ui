@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import api from "./payment-schedule-api";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import { paymentScheduleAPI } from "./payment-schedule-api";
+import CONFIG from "./config";
 
 const CalculatorInput = ({ calculate }) => {
   const [products, setProducts] = useState([]);
@@ -46,7 +47,7 @@ const CalculatorInput = ({ calculate }) => {
   }, [activeProductID, amount, period, paymentDay]);
 
   useEffect(() => {
-    api
+    paymentScheduleAPI
       .products()
       .then(({ products }) => {
         setProducts(products);
@@ -83,13 +84,13 @@ const CalculatorInput = ({ calculate }) => {
           ) : (
             products.map(product => (
               <option key={product.id} value={product.id}>
-                {product.name} (interest rate: {product.interestRate}%)
+                {product.name} with interest rate {product.interestRate}%
               </option>
             ))
           )}
         </Form.Control>
         <Form.Text className="text-muted">
-          Choose a financing product that you fancy.
+          Choose a financing product you fancy.
         </Form.Text>
       </Form.Group>
 
@@ -112,8 +113,8 @@ const CalculatorInput = ({ calculate }) => {
         </InputGroup>
         <Form.Text className="text-muted">
           Enter an amount between{" "}
-          {activeProduct.minAmount.toLocaleString("fi-FI")} and{" "}
-          {activeProduct.maxAmount.toLocaleString("fi-FI")}.
+          {activeProduct.minAmount.toLocaleString(CONFIG.locale)} and{" "}
+          {activeProduct.maxAmount.toLocaleString(CONFIG.locale)}.
         </Form.Text>
       </Form.Group>
 

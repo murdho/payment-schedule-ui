@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import CalculatorInput from "./CalculatorInput";
 import PaymentSchedule from "./PaymentSchedule";
-import paymentScheduleAPI from "./payment-schedule-api";
+import { paymentScheduleAPI } from "./payment-schedule-api";
 import Alert from "react-bootstrap/Alert";
 
 const Calculator = () => {
