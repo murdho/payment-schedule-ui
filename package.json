@@ -7,7 +7,10 @@
     "dev": "parcel src/index.html",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html --public-url='./'",
+    "clean": "rm -rf .cache dist",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Murdho",
   "license": "ISC",
@@ -19,6 +22,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "gh-pages": "^2.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1"
   },
