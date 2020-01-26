@@ -8,6 +8,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "jest",
+    "test:update": "jest -u",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage && open coverage/lcov-report/index.html",
     "clean": "rm -rf .cache dist",
