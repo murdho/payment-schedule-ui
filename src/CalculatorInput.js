@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import { paymentScheduleAPI } from "./payment-schedule-api";
 import CONFIG from "./config";
-import { Spinner } from "react-bootstrap";
 
 const CalculatorInput = ({ calculate }) => {
   const [loading, setLoading] = useState(true);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Alert from "react-bootstrap/Alert";
 import CalculatorInput from "./CalculatorInput";
 import PaymentSchedule from "./PaymentSchedule";
 import { paymentScheduleAPI } from "./payment-schedule-api";
-import Alert from "react-bootstrap/Alert";
 
 const Calculator = () => {
   const [rows, setRows] = useState([]);
