@@ -7,7 +7,7 @@ const PaymentSchedule = ({ rows, loading }) => {
   const hideRows = !rows.length || loading;
 
   return (
-    <Table striped bordered hover style={tableStyle}>
+    <Table striped bordered hover style={tableStyle} responsive>
       <thead>
         <tr>
           <th>#</th>
@@ -57,7 +57,6 @@ const renderRows = rows => {
 const tableStyle = {
   textAlign: "center",
   cursor: "pointer",
-  tableLayout: "fixed",
   wordWrap: "break-word",
   backgroundColor: "white"
 };
