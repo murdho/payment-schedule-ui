@@ -16,7 +16,15 @@ const PaymentSchedule = ({ rows }) => {
           <th>Monthly Payment</th>
         </tr>
       </thead>
-      <tbody>{rows.length ? renderRows(rows) : <tr><td colSpan="7">No results</td></tr>}</tbody>
+      <tbody>
+        {rows.length ? (
+          renderRows(rows)
+        ) : (
+          <tr>
+            <td colSpan="7">No results</td>
+          </tr>
+        )}
+      </tbody>
     </Table>
   );
 };
