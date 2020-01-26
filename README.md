@@ -16,3 +16,4 @@ Right now it is using a fake API which means that some of the schedule fields ar
 - [ ] Add config, refactor locale string usages to use config
 - [ ] Add tests
 - [ ] Add a separate products page
+- [ ] Build and deploy using GitHub Actions
