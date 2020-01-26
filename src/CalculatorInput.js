@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import api from "./payment-schedule-api";
+import { Alert } from "react-bootstrap";
 
 const CalculatorInput = ({ calculate }) => {
   const [products, setProducts] = useState([]);
+  const [productError, setProductError] = useState(null);
   const [activeProductID, setActiveProductID] = useState("");
   const [activeProduct, setActiveProduct] = useState({
     minAmount: 0,
@@ -13,20 +15,15 @@ const CalculatorInput = ({ calculate }) => {
     paymentDays: []
   });
 
-  const [amount, setAmount] = useState(1000);
+  const [amount, setAmount] = useState(0);
   const [period, setPeriod] = useState(0);
   const [paymentDay, setPaymentDay] = useState(0);
 
   useEffect(() => {
-    api.products().then(({ products }) => {
-      setProducts(products);
-
-      if (products.length) {
-        setActiveProductID(products[0].id);
-        setActiveProduct(products[0]);
-      }
-    }, console.error);
-  }, []);
+    // TODO: report the error to tracker.
+    // eslint-disable-next-line no-console
+    if (productError) console.error(productError);
+  }, [productError]);
 
   useEffect(() => {
     for (let product of products) {
@@ -48,8 +45,29 @@ const CalculatorInput = ({ calculate }) => {
     }
   }, [activeProductID, amount, period, paymentDay]);
 
+  useEffect(() => {
+    api
+      .products()
+      .then(({ products }) => {
+        setProducts(products);
+
+        if (products.length) {
+          setActiveProductID(products[0].id);
+          setActiveProduct(products[0]);
+          setAmount(Math.round(products[0].maxAmount / 2));
+        }
+      })
+      .catch(reason => setProductError(reason));
+  }, []);
+
   return (
     <Form>
+      {productError ? (
+        <Alert variant="danger">
+          There was an error loading the product list. Please refresh the page.
+        </Alert>
+      ) : null}
+
       <Form.Group>
         <Form.Label htmlFor="product">Product</Form.Label>
         <Form.Control
@@ -65,7 +83,7 @@ const CalculatorInput = ({ calculate }) => {
           ) : (
             products.map(product => (
               <option key={product.id} value={product.id}>
-                {product.name}
+                {product.name} (interest rate: {product.interestRate}%)
               </option>
             ))
           )}
