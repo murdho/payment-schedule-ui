@@ -77,7 +77,7 @@ const CalculatorInput = ({ calculate }) => {
   }, []);
 
   return (
-    <Form>
+    <Form style={formStyle} className="border">
       {productError ? (
         <Alert variant="danger">
           There was an error loading the product list. Please refresh the page.
@@ -180,6 +180,11 @@ const CalculatorInput = ({ calculate }) => {
       </Form.Group>
     </Form>
   );
+};
+
+const formStyle = {
+  backgroundColor: "white",
+  padding: "1rem"
 };
 
 export default CalculatorInput;
