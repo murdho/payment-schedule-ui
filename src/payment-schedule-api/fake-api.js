@@ -1,7 +1,7 @@
 import { doTimes } from "../functions";
 import CONFIG from "../config";
 
-const ARTIFICIAL_DELAY = 1000;
+const ARTIFICIAL_DELAY = 500;
 // const ARTIFICIAL_DELAY = 0;
 
 const fakeAPI = {
