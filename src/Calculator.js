@@ -33,11 +33,11 @@ const Calculator = () => {
 
   return (
     <Row>
-      <Col xs="3">
+      <Col lg="3" className="mb-3">
         <CalculatorInput calculate={calculate} />
       </Col>
 
-      <Col xs="9">
+      <Col lg="9">
         {calculationError ? renderErrorAlert() : null}
         <PaymentSchedule rows={rows} loading={loading} />
       </Col>

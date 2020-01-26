@@ -6,7 +6,7 @@ import ErrorBoundary from "./ErrorBoundary";
 
 const App = () => {
   return (
-    <Container fluid>
+    <Container fluid id="app">
       <Header />
       <ErrorBoundary>
         <Calculator />
