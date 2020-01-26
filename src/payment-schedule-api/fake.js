@@ -12,7 +12,7 @@ const fakeAPI = {
 
     const today = new Date();
     const firstPaymentMonth =
-      today.getDay() < paymentDay ? today.getMonth() : today.getMonth() + 1;
+      today.getDay() < paymentDay ? today.getMonth() + 1 : today.getMonth() + 2;
 
     const firstPaymentDate = new Date(
       today.getFullYear(),
